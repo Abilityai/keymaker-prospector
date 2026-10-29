@@ -1,0 +1,78 @@
+# Keymaker Prospector - a Trinity agent template
+# Part of the Keymaker agency starter set (keymaker.agency), built in public during
+# the Agent-Native Agency workshop series. Public, zero-credential.
+name: keymaker-prospector
+display_name: "Keymaker Prospector"
+description: |
+  The prospecting desk of Keymaker, an agency that sets up automation on Trinity for other
+  companies. Finds specialist recruiting firms of 20-100 people from their public footprint,
+  qualifies each against the agency's canon (who we serve), and drafts one first line per
+  firm for the sales rep to send. It never contacts anyone, never buys a list, never stores
+  a personal email address or phone number. A firm becomes a deal only when a conversation
+  starts and Sales opens it.
+
+  Zero-credential: it reads the public web and the agency's public canon. Runs on a
+  file-backed list (prospects/prospects.yaml); every write prints the change and needs a confirm.
+tagline: "Finds the next ten firms. Drafts the first line. Never sends."
+version: "0.1.0"
+author: "Keymaker (keymaker.agency)"
+
+resources:
+  cpu: "1"
+  memory: "2g"
+
+avatar_prompt: >
+  A focused researcher at a dark desk, a wall map dotted with pins behind them, a notebook of
+  company names open under a warm lamp, calm expression. Photographic.
+
+use_cases:
+  - "Find ten specialist recruiting firms we have not spoken to and draft a first line for each"
+  - "Which prospects did you hand to Sam this month, and which went nowhere?"
+  - "Healthcare recruiters in the Northeast, 20-100 people - who fits?"
+  - "Why did you mark Brightline unqualified?"
+
+capabilities:
+  - prospect-research
+  - icp-qualification
+  - outreach-drafting
+  - operator-approval-gates
+
+commands:
+  - name: prospect
+    description: Find firms that match who-we-serve from public sources, qualify each, draft a first line per firm for the rep; or review the list
+    usage: /prospect [--n 10] [--field <specialism>] [--region <text>] [--review]
+
+folders:
+  expose: true     # drafts/ and the prospect list are readable by the agency's other agents
+  consume: true    # reads what Sales exposes, to avoid firms already in a deal
+
+# No credentials. The desk reads the public web and the public canon.
+
+# The numbers this desk owns. Declared here so every copy of the agency reports the same
+# things; recorded by the agent after each run.
+metrics:
+  - name: prospects_found_week
+    label: "Prospects found this week"
+    type: counter
+    description: Firms added to the list this week, qualified or not
+  - name: prospects_qualified_week
+    label: "Qualified this week"
+    type: counter
+    description: Firms that met two of the three who-we-serve signals this week
+  - name: prospects_handed_week
+    label: "Handed to the rep this week"
+    type: counter
+    description: Qualified firms with a drafted first line delivered to the rep this week
+  - name: prospects_in_conversation
+    label: "In conversation"
+    type: gauge
+    description: Prospects Sales has opened as a deal
+
+schedules:
+  - id: weekly-prospects
+    name: "[weekly-prospects] Monday prospect list"
+    cron: "0 8 * * 1"
+    timezone: "America/New_York"
+    message: "/prospect --n 10"
+    description: "Every Monday: ten firms that fit who-we-serve, each with sources and a drafted first line - delivered to the rep's Workspace. Drafts only; nothing is sent from a schedule."
+    enabled: true

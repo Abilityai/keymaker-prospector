@@ -1,0 +1,40 @@
+title: "Keymaker Prospector"
+refresh: 60
+# Every number here is bound to a metric declared in template.yaml and recorded by /prospect after
+# each run. Nothing is typed in by hand.
+sections:
+  - title: "The list"
+    layout: grid
+    columns: 4
+    widgets:
+      - type: metric
+        id: prospects_found_week
+        metric: prospects_found_week
+        label: "Found this week"
+      - type: metric
+        id: prospects_qualified_week
+        metric: prospects_qualified_week
+        label: "Qualified this week"
+      - type: metric
+        id: prospects_handed_week
+        metric: prospects_handed_week
+        label: "Handed to the rep"
+      - type: metric
+        id: prospects_in_conversation
+        metric: prospects_in_conversation
+        label: "In conversation"
+  - title: "Where to look"
+    layout: list
+    widgets:
+      - type: link
+        id: list_link
+        label: "The prospect list"
+        url: "prospects/prospects.yaml"
+      - type: link
+        id: drafts_link
+        label: "Drafts for the rep"
+        url: "drafts/"
+      - type: link
+        id: canon_link
+        label: "The canon (who we serve, who may contact a firm)"
+        url: "https://github.com/Abilityai/keymaker-canon"

@@ -1,0 +1,22 @@
+# Who may operate Keymaker Prospector. A human edits this; the agent reads it.
+#
+# sales-rep  - runs /prospect, reads the list, decides who is contacted and sends it themselves
+# principal  - everything the rep may
+#
+# When canon/ is present (cloned at start), canon/domains/org-context/ORGANISATION.md decides who
+# fills sales-rep and principal; this file is the sample for an agency without a canon.
+version: 1
+operators:
+  - id: principal
+    name: "Your name"
+    email: "you@yourcompany.com"
+    role: principal
+  - id: rep-1
+    name: "Sam Reyes"            # sample rep - replace
+    email: "sam@keymaker.agency"
+    role: sales-rep
+rules:
+  unknown_operator: refuse
+  running_roles: [sales-rep, principal]
+  sending: never - this desk has no send path; the rep sends from their own mailbox
+  personal_data: never stored - roles and URLs only

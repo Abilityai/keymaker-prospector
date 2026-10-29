@@ -1,0 +1,35 @@
+# File-backed prospect list (the only backend of scripts/prospects.py).
+# One row per firm, keyed on domain. Rows are never deleted. No personal data - roles and URLs only.
+# Two sample rows for a fictional agency so the shape is visible; the first real run adds to them.
+prospects:
+- domain: example-finance-search.test
+  name: Example Finance Search (sample)
+  field: finance
+  region: Boston, MA
+  size_evidence: "team page lists 34 people (https://example-finance-search.test/team) - sample row"
+  ats_evidence: "jobs page served by Bullhorn, 61 live roles (https://example-finance-search.test/jobs) - sample row"
+  hurt_evidence: "none found"
+  sources:
+  - https://example-finance-search.test/team
+  - https://example-finance-search.test/jobs
+  status: handed
+  first_line: "Sixty-one open finance roles across a team of thirty-four is a lot of shortlists a week - I was curious how long one takes you today."
+  handed_on: '2026-10-20'
+  added_on: '2026-10-20'
+  notes:
+  - "sample row - delete when the first real run lands"
+- domain: example-general-staffing.test
+  name: Example General Staffing (sample)
+  field: generalist
+  region: ''
+  size_evidence: "LinkedIn listing says 201-500 (search snippet) - sample row"
+  ats_evidence: "none found"
+  hurt_evidence: "none found"
+  sources:
+  - https://example-general-staffing.test/about
+  status: unqualified
+  first_line: ''
+  handed_on: null
+  added_on: '2026-10-20'
+  notes:
+  - "not a specialist recruiter; over 100 people - sample row"
