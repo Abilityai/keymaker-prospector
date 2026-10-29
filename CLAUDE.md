@@ -42,8 +42,8 @@ it `unqualified` with the missing signals named. Record the URL that evidenced e
 
 | Signal | What counts as evidence | What does not |
 |---|---|---|
-| **Specialist recruiter, 20-100 people** | a team page, an "about" page or a directory listing giving headcount in range; one field named (finance, tech, healthcare, engineering, legal...) | a generalist staffing firm; a one-person desk; an in-house talent team |
-| **Runs an ATS and a job board** | a careers or jobs page served by Bullhorn, Loxo, Recruit CRM, Vincere, JobAdder or similar (the URL or page markup says so); live roles listed | a contact form only; no roles visible |
+| **Specialist recruiter, 20-100 people** | one field named (finance, tech, healthcare, engineering, legal...) **and** headcount in range from the firm's own team page, or from a directory when two directories agree within the band; directories that disagree by an order of magnitude are not evidence - record `headcount not evidenced` and the figures seen | a generalist staffing firm; a one-person desk; an in-house talent team; travel or per-diem staffing (not placement-fee search) |
+| **A live job board** | their own careers or jobs page with live, dated roles; the ATS vendor named where the URL or markup shows it (Bullhorn, Loxo, Recruit CRM, Vincere, JobAdder or similar) - a named vendor is a bonus, not the bar | a contact form only; no roles visible; roles undated for months |
 | **The hurt is visible** | many open roles per visible recruiter; "shortlist in X days" or speed claims on the site; recent hiring of recruiters or resourcers; posts about admin load | nothing about pace or volume anywhere |
 
 Never promise a placement or a fee figure. Never name a competitor of theirs. Never mention a
@@ -57,6 +57,9 @@ recruiter or time to shortlist** (that is how we talk), and ends. No pitch, no p
 "I hope this finds you well". Write it in the rep's voice - the rep is a person, you are not.
 
 ## The list
+
+The two `.test` sample rows ship so the shape is visible. Before the desk goes live a person deletes
+them from the file by hand - the only deletion the list ever sees - so the lifetime counts start at zero.
 
 `prospects/prospects.yaml` - one row per firm: `domain`, `name`, `field`, `region`, `size_evidence`,
 `ats_evidence`, `hurt_evidence`, `sources` (URLs), `status`, `first_line`, `handed_on`, `notes`.

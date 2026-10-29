@@ -41,10 +41,13 @@ Everything you write about a firm comes from a URL you can name.
    and the phrases a specialist recruiter uses about itself ("specialist recruitment", "search and
    selection", "placements", the field, "team of"). Directory pages and awards lists are good
    sources of candidate names; a candidate is only a name and a domain at this point.
-2. **Read the footprint.** For each candidate up to `--n` qualified (default 10) and at most 3x that
-   many examined: fetch the firm's site - home, about or team, careers or jobs. From those pages and
+2. **Read the footprint.** For each candidate up to `--n` qualified (default 10) and at most 4x that
+   many examined (a field where headcount is rarely published burns candidates fast - say when the
+   cap, not the market, ended the run): fetch the firm's site - home, about or team, careers or jobs. From those pages and
    the search snippets, fill the three signals (CLAUDE.md) with the URL for each. Stop examining a
    firm as soon as two signals are evidenced or two are clearly absent.
+   A candidate whose domain you cannot resolve is **not** added - a row keyed to a wrong domain would
+   block the real one forever; name it in the answer as a candidate for the next run instead.
 3. **Qualify.** Two of three signals: `qualified`. Fewer: `unqualified` with the missing signals
    named. Outside the field entirely (generalist staffing, in-house, an RPO): `unqualified: not a
    specialist recruiter`. Record every examined firm - the unqualified ones are what stops the next
